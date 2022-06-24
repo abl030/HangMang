@@ -217,7 +217,7 @@ def match_with_gaps(my_word, other_word):
         index += 1
     return True
 
-print(match_with_gaps('appl_','apple'))
+
 
 
 def show_possible_matches(my_word):
@@ -230,6 +230,7 @@ def show_possible_matches(my_word):
              that has already been revealed.
 
     '''
+    my_word = my_word.replace(' ', '')
     matching_words = ''
     global wordlist
     for words in wordlist:
@@ -273,7 +274,7 @@ def hangman_with_hints(secret_word):
     guesses = 6
     new_line = '----------------'
     letters_guessed = ''
-    valid_letters = 'abcdefghijklmnopqrstuvwyxz'
+    valid_letters = 'abcdefghijklmnopqrstuvwyxz*'
     score = 0
     vowels = 'aeiou'
 
@@ -289,10 +290,11 @@ def hangman_with_hints(secret_word):
         print('Available letters:', get_available_letters(letters_guessed))
         # ask for an input
         guess = input('Please guess a letter:').lower()
-        # this test is if it's not a valid letter
+
         if guess == '*':
-
-
+            print('Possible word matches are:')
+            print(show_possible_matches(get_guessed_word(secret_word, letters_guessed)))
+        # this test is if it's not a valid letter
         elif guess not in valid_letters:
             if warnings < 1:
                 guesses -= 1
@@ -333,8 +335,7 @@ def hangman_with_hints(secret_word):
         print('Congratulations, you won! \nYour total score for this game is:', score)
     else:
         print('Sorry, you ran out of guesses. The word was:', secret_word, '.')
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+
 
 
 # When you've completed your hangman_with_hint function, comment the two similar
@@ -357,5 +358,7 @@ def hangman_with_hints(secret_word):
 # To test part 3 re-comment out the above lines and
 # uncomment the following two lines.
 
-# secret_word = choose_word(wordlist)
-# hangman_with_hints(secret_word)
+secret_word = choose_word(wordlist)
+hangman_with_hints(secret_word)
+
+#print(show_possible_matches('_ee_______'))
