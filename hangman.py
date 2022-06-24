@@ -270,6 +270,14 @@ def hangman_with_hints(secret_word):
     Follows the other limitations detailed in the problem write-up.
     '''
 
+    #Things still to implement:
+    #remove the trailing none when using the * special character
+    #when guessing a letter that isn't in the word update the available letters string
+    #word wrap the hint words
+    #check the style guide document and update as neccesary
+
+
+
     warnings = 3
     guesses = 6
     new_line = '----------------'
